@@ -7,22 +7,18 @@ import { Observable, catchError, throwError } from 'rxjs';
   providedIn: 'root'
 })
 export class ProductService {
-  subscribe() {
-    throw new Error('Method not implemented.');
-  }
-
   constructor(private http: HttpClient) { }
 
-  private productUrl = '../assets/data/data.json'
+  private productUrl = '/assets/data/data.json';
 
   getProductData(): Observable<Product[]> {
     return this.http.get<Product[]>(this.productUrl).pipe(
       catchError(this.handleError)
-    )
+    );
   }
 
   private handleError(error: HttpErrorResponse) {
     console.error('API request failed:', error.message);
-    return throwError('Failed to fetch product data. Please try again later.');
+    return throwError(() => new Error('Failed to fetch product data. Please try again later.'));
   }
 }

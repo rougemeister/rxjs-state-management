@@ -1,0 +1,12 @@
+
+<div class="container">
+    <div class="product" [class.active]="isDisable">
+    <img [src]="product.image.mobile" alt="">
+    <h2>{{product.name}}</h2>
+    <p>{{product.price | currency}}</p>
+    <div class="buttons">
+        <button class="add" [disabled]="isDisable"   (click)="addtoCart(product)">Add to cart</button>
+        <button class="remove" (click)="removeFromCart(product)">Remove from cart</button>
+    </div>
+</div>
+</div>

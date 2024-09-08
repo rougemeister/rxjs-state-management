@@ -8,6 +8,8 @@ import { Product } from '../interfaces/product.interface';
 })
 export class CartService {
 
+  isDisable = false;
+
   public cartItemSubject = new BehaviorSubject<Product[]>([]);
   private totalCartItemsSubject = new BehaviorSubject<number>(0);
   totalCartItems$ = this.totalCartItemsSubject.asObservable();
@@ -19,10 +21,9 @@ export class CartService {
     this.updateTotalItems(updatedCart);
   }
 
-  isIncart(product: Product) {
-    const inCartVar = this.cartItemSubject.getValue().some(item => item.name === product.name);
-    console.log(inCartVar);
-    return inCartVar;
+  isProductInCart(product: Product) {
+    const productInCart = this.cartItemSubject.getValue().some(item => item.name === product.name);
+    return productInCart
   }
 
 
@@ -36,6 +37,7 @@ export class CartService {
   clearCart() {
     this.cartItemSubject.next([]);
     this.updateTotalItems([]);
+    this.isDisable = !this.isDisable
   }
 
   updateTotalItems(cartItems: Product[]) {
@@ -43,5 +45,4 @@ export class CartService {
     this.totalCartItemsSubject.next(totalItems);
   }
 
-  constructor() { }
 }
