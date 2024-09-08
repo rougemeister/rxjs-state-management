@@ -22,6 +22,11 @@
     justify-content: space-between;
 }
 
+.cart svg:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
 .cart.desktop {
     display: none;
  }

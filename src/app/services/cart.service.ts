@@ -13,6 +13,7 @@ export class CartService {
   public cartItemSubject = new BehaviorSubject<Product[]>([]);
   private totalCartItemsSubject = new BehaviorSubject<number>(0);
   totalCartItems$ = this.totalCartItemsSubject.asObservable();
+  
 
   addToCart(product: Product) {
     const currentCart = this.cartItemSubject.value;

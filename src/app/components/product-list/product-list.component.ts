@@ -17,20 +17,14 @@ import { Product } from '../../interfaces/product.interface';
 export class ProductListComponent implements OnInit {
   products$!: Observable<Product[]>;
   cartItems$ = this.cartService.totalCartItems$;
-  isDisable:  boolean = false;
-
-
+  
   constructor(private productService: ProductService, public cartService: CartService) { }
+
   ngOnInit() {
     this.products$ = this.productService.getProductData();
-    this.isDisable = this.cartService.isDisable;   
-    }
-
-
+  }
+  
   clearCart() {
     this.cartService.clearCart();
-    console.log(this.isDisable)
-    this.isDisable = !this.isDisable;
-
   }
 }

@@ -27,7 +27,6 @@ export class ProductComponent {
 
   removeFromCart(product: Product) {
     this.cartService.removeFromCart(product);
-    console.log(this.isDisable)
     this.isDisable = false;
 
   }
